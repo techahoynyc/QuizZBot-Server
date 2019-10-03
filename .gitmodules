@@ -1,0 +1,3 @@
+[submodule "client/ZeroBot"]
+	path = client/ZeroBot
+	url = https://github.com/CoretechR/ZeroBot
