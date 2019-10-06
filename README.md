@@ -14,16 +14,19 @@ The game requires at minimum the following:
 The server setup consists of a web server, to display the leaderboard and acts a front-end for the database, and database server, to record the scores for each team.
 
 For this guide we will be running NodeJS (web server) and Postgresql (database server) on a Raspberry Pi 3 and are assuming you have already installed and connected your Raspberry Pi to your network.
+
 __Web Server__
 1. Install NodeJS
-```
-sudo apt-get install node.js npm
-```
+   ```
+   sudo apt-get install node.js npm
+   ```
+
 1. Install Postgresql
-```
-sudo apt install postgresql libpq-dev postgresql-client
-postgresql-client-common -y
-```
+   ```
+   sudo apt install postgresql libpq-dev postgresql-client
+   postgresql-client-common -y
+   ```
+   
 1. Setup Postgresql and grant the pi user access
 ```sudo su postgres
 createuser pi -P --interactive
