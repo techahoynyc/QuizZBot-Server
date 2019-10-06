@@ -47,7 +47,6 @@ __Web Server__
   ```
   quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
   ```
-
 ### Client
 
 ## Game Play
