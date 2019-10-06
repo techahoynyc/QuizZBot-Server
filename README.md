@@ -28,27 +28,27 @@ __Web Server__
    ```
 
 1. Setup Postgresql and grant the pi user access
-  ```
-  sudo su postgres
-  createuser pi -P --interactive
-  ```
+   ```
+   sudo su postgres
+   createuser pi -P --interactive
+   ```
 
 1. Create the quizzbot database
-  ```
-  $ psql
-  > create database quizzbot;
-  ```
+   ```
+   $ psql
+   > create database quizzbot
+   ```
 
 1. Connect to the quizzbot database
-  ```
-  psql quizzbot
-  ```
+   ```
+   psql quizzbot
+   ```
 
 1. Create the leaderboard table
-  ```
-  quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
-  ```
-  
+   ```
+   quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
+   ```
+
 ### Client
 
 ## Game Play
