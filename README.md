@@ -33,10 +33,10 @@ __Web Server__
   ```
 
 1. Create the quizzbot database
-  ```
-  $ psql
-  > create database quizzbot;
-  ```
+```
+$ psql
+> create database quizzbot;
+```
 
 1. Connect to the quizzbot database
   ```
