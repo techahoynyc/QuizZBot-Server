@@ -1,12 +1,10 @@
-# QuizZBot
+# QuizZBot-Server
 ## Description
-QuizZBot is built off of [CoreTechR's](https://github.com/CoretechR) Raspberry Pi Zero FPV Robot and utilizes in game questions to challenge players as they race around a predefined course.
-
-The questions are customized per player, team, or class and stored in a JSON file for easy readability.
+QuizZBot-Server is the backend system for [QuizZBot](https://github.com/techahoynyc/QuizZBot) providing a web based leaderboard and database for score tracking.  
 
 ## Requirements
 The game requires at minimum the following:
-* 2 (minimum) ZeroBot FPV Robots
+* 2 (minimum) QuizZBots
 * 1 Raspberry Pi 2/3/4 for the server
 
 ## Setup
