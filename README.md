@@ -77,23 +77,22 @@ __Database Server__
  * right answer results in -5 second __reward__
 * Team with best __score__ or __first place__ wins
 
-## Setup
-**QuizZBot**
-https://hackaday.io/project/25092/instructions
-https://github.com/alphacharlie/node-ads1x15/issues/4
-**Server**
 #### Leaderboard
 /get shows Leaderboard
 /post RPi invididual results
 
 ## Refernce links
-https://opensource.com/article/17/10/set-postgres-database-your-raspberry-pi
-https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/
-https://medium.com/@paupavon/handling-form-submissions-in-nodejs-876bc980dc0a
-https://www.npmjs.com/package/pug
+__ZeroBot__
+https://hackaday.io/project/25092/instructions  
+https://github.com/alphacharlie/node-ads1x15/issues/4  
 
-***NodeJS***
-https://flaviocopes.com/express-forms/
-https://hub.packtpub.com/using-handlebars-express/
-https://stackabuse.com/reading-and-writing-json-files-with-node-js/
-https://www.npmjs.com/package/express-handlebars
+__Postgresql__
+https://opensource.com/article/17/10/set-postgres-database-your-raspberry-pi  
+https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/  
+
+__NodeJS__
+https://medium.com/@paupavon/handling-form-submissions-in-nodejs-876bc980dc0a  
+https://flaviocopes.com/express-forms/  
+https://hub.packtpub.com/using-handlebars-express/  
+https://stackabuse.com/reading-and-writing-json-files-with-node-js/  
+https://www.npmjs.com/package/express-handlebars  
