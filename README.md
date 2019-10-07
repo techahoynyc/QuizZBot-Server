@@ -14,6 +14,11 @@ The game requires at minimum the following:
 The server setup consists of a web server, to display the leaderboard and acts a front-end for the database, and database server, to record the scores for each team.
 
 For this guide we will be running NodeJS (web server) and Postgresql (database server) on a Raspberry Pi 3 and are assuming you have already installed and connected your Raspberry Pi to your network.
+__Prerequisites__
+1. Install Git
+   ```
+   sudo apt-get install git
+   ```
 
 __Web Server__
 1. Install NodeJS
@@ -21,6 +26,18 @@ __Web Server__
    sudo apt-get install node.js npm
    ```
 
+1. Clone QuizZBot repository
+   ```
+   git clone https://github.com/techahoynyc/quizzbot
+   ```
+
+1. Download dependencies listed in package.json file
+   ```
+   ~ $ cd quizzbot/node-quizzbot
+   ~/quizzbot/node-quizzbot $ npm install
+   ```
+
+__Database Server__
 1. Install Postgresql
    ```
    sudo apt install postgresql libpq-dev postgresql-client
@@ -35,7 +52,7 @@ __Web Server__
 
 1. Create the quizzbot database
    ```
-   $ psql
+   ~ $ psql
    > create database quizzbot
    ```
 
