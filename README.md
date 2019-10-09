@@ -64,9 +64,21 @@ __Database Server__
    quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
    ```
 
-### Client
-
 ## Game Play
+__V1__
+* Start/Stop race manually
+* Access questions page with QButton
+* Points and penalties dependent on right or wrong answer, respectively
+ * Points: Correct answer is +10 points
+ * Banana penalty: QZB spins in place for some seconds and +0 points
+* Leaderboard to display leaders using QZB unique ID
+
+__V2__
+* Grafan metrics
+* Leaderboard is composed of users or teamnames requiring sign-in independent of car
+* Thoughtfulness()
+
+__TBD__
 * RPi boots and automatically downloads qset
  * (qset changes daily or via some preset rate)
 * User connects to RPi and starts race
