@@ -26,10 +26,12 @@ app.post('/submit-form', (req,res)=>{
     const correct = req.body.correct;
     if(answer == correct){
        console.log("CORRECT ANSWER!");
+       res.redirect('/');
     } else {
        console.log("WRONG");
+       res.redirect('/touch.html?action=slip');
     }
-    res.redirect('/');
+    //res.redirect('/touch.html?action=slip');
 });
 
 app.get('/users', db.getUsers)
