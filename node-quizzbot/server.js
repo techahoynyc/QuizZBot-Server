@@ -25,10 +25,10 @@ app.post('/submit-form', (req,res)=>{
     const correct = req.body.correct;
     if(answer == correct){
        console.log("CORRECT ANSWER!");
-       res.redirect('https://10.82.1.17:3000');
+       res.redirect('http://10.82.1.17:3000');
     } else {
        console.log("WRONG");
-       res.redirect('https://10.82.1.17:3000/?action=slip');
+       res.redirect('http://10.82.1.17:3000/?action=slip');
     }
     //res.redirect('/touch.html?action=slip');
 });
