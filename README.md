@@ -66,30 +66,21 @@ __Database Server__
 
 ## Game Play
 __V1__
-* Start/Stop race manually
-* Access questions page with QButton
-* Points and penalties dependent on right or wrong answer, respectively
+* [x] Start/Stop race manually
+* [x] Access questions page with QButton
+* [ ] Points and penalties dependent on right or wrong answer, respectively
  * Points: Correct answer is +10 points
  * Banana penalty: QZB spins in place for some seconds and +0 points
-* Leaderboard to display leaders using QZB unique ID
+* [ ] Leaderboard to display leaders using QZB unique ID
 
 __V2__
 * [ ] Grafan metrics
-* [ ] Leaderboard is composed of users or teamnames requiring sign-in independent of car
+* [ ] Leaderboard is composed of users or team names requiring sign-in independent of car
 * [ ] Thoughtfulness()
-
-__TBD__
-* RPi boots and automatically downloads qset
- * (qset changes daily or via some preset rate)
-* User connects to RPi and starts race
-* At preset intervals the user is prompted to answer questions
- * wrong answer results in +5 second __penalty__ or __reask__
- * right answer results in -5 second __reward__
-* Team with best __score__ or __first place__ wins
-
-#### Leaderboard
-/get shows Leaderboard
-/post RPi invididual results
+* [ ] Easily change QSet
+* [ ] At preset intervals the user is prompted to answer questions
+* [ ] Rewards for correct answer
+* [ ] Time racers
 
 ## Refernce links
 __ZeroBot__
