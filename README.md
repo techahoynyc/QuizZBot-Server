@@ -74,9 +74,9 @@ __V1__
 * Leaderboard to display leaders using QZB unique ID
 
 __V2__
-* [] Grafan metrics
-* [] Leaderboard is composed of users or teamnames requiring sign-in independent of car
-* [] Thoughtfulness()
+* [ ] Grafan metrics
+* [ ] Leaderboard is composed of users or teamnames requiring sign-in independent of car
+* [ ] Thoughtfulness()
 
 __TBD__
 * RPi boots and automatically downloads qset
