@@ -26,14 +26,14 @@ const getUserById = (request, response) => {
     response.status(200).json(results.rows)
   })
 }
-const createUser = (request, response) => {
-  const { name, email } = request.body
+const createTeam = (request, response) => {
+  const { qbid, teamname } = request.body
 
-  pool.query('INSERT INTO players (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
+  pool.query('INSERT INTO leaderboard (qbid, teamname) VALUES ($1, $2)', [qbid, teamname], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`User added with UID: ${result.insertId}`)
+    response.status(201).send(`Team added with QBID: ${result.insertId}`)
   })
 }
 
@@ -63,10 +63,26 @@ const deleteUser = (request, response) => {
   })
 }
 
+const updateScore = (request, response) => {
+  const qbid = parseInt(request.params.qbid)
+
+  pool.query(
+    'UPDATE leaderboard SET score = score + 1 WHERE qbid = $1',
+    [qbid],
+    (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Score increased for QBID: ${qbid}`)
+    }
+  )
+}
+
 module.exports = {
   getUsers,
   getUserById,
-  createUser,
+  createTeam,
   updateUser,
   deleteUser,
+  updateScore,
 }
