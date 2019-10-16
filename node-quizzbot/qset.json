@@ -1,4 +1,24 @@
 {
-    "question": "2 * 9 = ?",
-     "answer": "18"
+  "questions": [
+    {
+      "question": "2 * 9 = ?",
+      "answer": "18"
+    },
+    {
+      "question": "6 * 6 = ?",
+      "answer": "36"
+    },
+    {
+      "question": "10 * 7 = ?",
+      "answer": "70"
+    },
+    {
+      "question": "12 * 9 = ?",
+      "answer": "108"
+    },
+    {
+      "question": "7 * 8 = ?",
+      "answer": "56"
+    }
+  ]
 }
