@@ -17,27 +17,11 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.render('home',{question:questions.question,answer:questions.answer});
+    res.render('Welcome to QuizZBot!  Please use an authorized QuizZBot to receive your first question.');
 });
 
-app.post('/submit-form', (req,res)=>{
-    const answer = req.body.answer;
-    const correct = req.body.correct;
-    if(answer == correct){
-       console.log("CORRECT ANSWER!");
-       res.redirect('http://10.82.1.17:3000');
-    } else {
-       console.log("WRONG");
-       res.redirect('http://10.82.1.17:3000/?action=slip');
-    }
-    //res.redirect('/touch.html?action=slip');
-});
-
-app.get('/users', db.getUsers)
-app.get('/users/:id', db.getUserById)
-app.post('/users', db.createTeam)
-app.put('/users/:id', db.updateScore)
-app.delete('/users/:id', db.deleteUser)
+app.get('/q/:qbid', db.getQbyQBID)
+app.post('/q/:qbid/:answer', db.saveAnswer)
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

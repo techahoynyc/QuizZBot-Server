@@ -1,3 +1,6 @@
+let rawdata = fs.readFileSync('qset.json');
+let questions = JSON.parse(rawdata);
+
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'pi',
@@ -7,83 +10,41 @@ const pool = new Pool({
   port: 5432,
 })
 
-const getUsers = (request, response) => {
-  pool.query('SELECT * FROM players ORDER BY uid ASC', (error, results) => {
+const saveAnswer = (req, res) => {
+  const { qbid, q, a, c, ip } = req.body
+  const score = 0
+  const action = 'slip'
+  if(a == c){
+    score = 1
+    action = 'drive'
+  }
+  pool.query('INSERT INTO players (qbid, q, score) VALUES ($1, $2, $3)', [qbid, q, score], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(200).json(results.rows)
+    console.log(`${qbid} scored ${score} point(s)`)
   })
+  res.redirect('http://${ip}:3000/?action=${action}')
 }
 
-const getUserById = (request, response) => {
-  const id = parseInt(request.params.id)
+const getQbyQBID = (req, res) => {
+  const qbid = parseInt(req.params.qbid)
 
-  pool.query('SELECT * FROM players WHERE uid = $1', [id], (error, results) => {
+  pool.query('SELECT max(q) FROM players WHERE qbid = $1', [qbid], (error, results) => {
     if (error) {
       throw error
     }
-    //response.status(200).json(results.rows)
-    response.render('home',{question:results.rows[0].name});
+    currQ = results.rows[0]
+    if(questions.length > currQ){
+      currQ++
+      response.render('home',{question:currQ.q});
+    } else {
+      response.render('You completed all the questions!');
+    }
   })
-}
-const createTeam = (request, response) => {
-  const { qbid, teamname } = request.body
-
-  pool.query('INSERT INTO leaderboard (qbid, teamname) VALUES ($1, $2)', [qbid, teamname], (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(201).send(`Team added with QBID: ${result.insertId}`)
-  })
-}
-
-const updateUser = (request, response) => {
-  const id = parseInt(request.params.id)
-  const { name, email } = request.body
-
-  pool.query(
-    'UPDATE players SET name = $1, email = $2 WHERE uid = $3',
-    [name, email, id],
-    (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).send(`User modified with UID: ${uid}`)
-    }
-  )
-}
-const deleteUser = (request, response) => {
-  const id = parseInt(request.params.id)
-
-  pool.query('DELETE FROM players WHERE uid = $1', [id], (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).send(`User deleted with UID: ${uid}`)
-  })
-}
-
-const updateScore = (request, response) => {
-  const qbid = parseInt(request.params.qbid)
-
-  pool.query(
-    'UPDATE leaderboard SET score = score + 1 WHERE qbid = $1',
-    [qbid],
-    (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).send(`Score increased for QBID: ${qbid}`)
-    }
-  )
 }
 
 module.exports = {
-  getUsers,
-  getUserById,
-  createTeam,
-  updateUser,
-  deleteUser,
-  updateScore,
+  saveAnswer,
+  getQbyQBID,
 }
