@@ -1,7 +1,7 @@
 const fs = require('fs');
 let rawdata = fs.readFileSync('qset.json');
 let questions = JSON.parse(rawdata);
-let totalQs Object.keys(obj.questions[0]).length
+let totalQs = Object.keys(obj.questions[0]).length
 
 console.log('There are' + totalQs + ' question(s)')
 
