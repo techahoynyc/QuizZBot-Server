@@ -2,6 +2,8 @@ const fs = require('fs');
 let rawdata = fs.readFileSync('qset.json');
 let questions = JSON.parse(rawdata);
 
+console.log('There are ${questions.length} question(s)')
+
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'pi',
@@ -40,7 +42,7 @@ const getQbyQBID = (req, res) => {
       currQ++
       response.render('home',{question:currQ.q});
     } else {
-      response.render('You completed all the questions!');
+      response.send('You completed all the questions!');
     }
   })
 }
