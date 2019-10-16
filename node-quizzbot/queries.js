@@ -1,8 +1,9 @@
 const fs = require('fs');
 let rawdata = fs.readFileSync('qset.json');
 let questions = JSON.parse(rawdata);
+let totalQs Object.keys(obj.questions[0]).length
 
-console.log('There are' + Object.keys(questions).length.length + ' question(s)')
+console.log('There are' + totalQs + ' question(s)')
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -38,7 +39,7 @@ const getQbyQBID = (req, res) => {
       throw error
     }
     currQ = results.rows[0]
-    if(questions.length > currQ){
+    if(totalQs > currQ){
       currQ++
       res.render('home',{question:currQ.q});
     } else {
