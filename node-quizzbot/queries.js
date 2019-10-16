@@ -2,7 +2,7 @@ const fs = require('fs');
 let rawdata = fs.readFileSync('qset.json');
 let questions = JSON.parse(rawdata);
 
-console.log('There are ${questions.length} question(s)')
+console.log('There are' + questions.length + ' question(s)')
 
 const Pool = require('pg').Pool
 const pool = new Pool({
