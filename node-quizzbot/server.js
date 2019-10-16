@@ -6,11 +6,6 @@ const port = 3000;
 
 'use strict';
 
-const fs = require('fs');
-
-let rawdata = fs.readFileSync('qset.json');
-let questions = JSON.parse(rawdata);
-console.log(questions);
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(express.urlencoded({extended: true}));
