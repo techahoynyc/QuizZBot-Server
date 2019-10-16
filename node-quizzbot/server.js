@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.render('Welcome to QuizZBot!  Please use an authorized QuizZBot to receive your first question.');
+    res.send('Welcome to QuizZBot!  Please use an authorized QuizZBot to receive your first question.');
 });
 
 app.get('/q/:qbid', db.getQbyQBID)
