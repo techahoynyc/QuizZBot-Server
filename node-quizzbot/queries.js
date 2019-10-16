@@ -1,6 +1,3 @@
-let rawdata = fs.readFileSync('qset.json');
-let questions = JSON.parse(rawdata);
-
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'pi',
