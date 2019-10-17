@@ -27,7 +27,10 @@ exports.getQbyQBID = function(req, res) {
     if (error) {
       throw error
     }
-    if (results.rows[0].ip) {
+    if (results.rows[0].ip == undefined) {
+      console.log(`--QBID #${qbid} is not found`)
+      res.send(`ERROR: QBID #${qbid} is not found<BR>Please speak to your teacher.`)
+    } else {
       var ip = results.rows[0].ip
       console.log(`--QBID #${qbid} is ready to play!`)
       pool.query('SELECT max(q) FROM players WHERE qbid = $1', [qbid], (error, results) => {
@@ -46,9 +49,6 @@ exports.getQbyQBID = function(req, res) {
           res.send('You completed all the questions!');
         }
       });
-    } else {
-      console.log(`--QBID #${qbid} is not found`)
-      res.send(`ERROR: QBID #${qbid} is not found<BR>Please speak to your teacher.`)
     }
   });
 };
