@@ -40,7 +40,7 @@ __Web Server__
    ~/QuizZBot-Server/node-quizzbot $ nano .env
    ```
 
-1. Add the following to the new .env file.
+1. Add the following to the new .env file.  
    Replace the <place_holders> with their appropriate value (i.e. <db_port> could become 5432)
    ```
    DATABASE_USER=<db_user>
