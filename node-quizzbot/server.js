@@ -3,12 +3,19 @@ const { createLogger, transports ,format} = require('winston');
 const logger = createLogger({
   level: 'info',
   format: format.combine(
-    format.json(),
-    format.timestamp()
+    format.colorize(),
+    format.timestamp(),
+    format.align(),
+    format.printf(
+      info => `${info.timestamp} ${info.level}: ${info.message}`,
+    ),
 ),
   transports: [
-    // - Write all logs error (and below) to `somefile.log`.
-    new transports.File({ filename: 'QuizZBot-Server.log', level: 'error' })
+    new transports.File({
+      filename: 'QuizZBot-Server.log',
+      datePattern: 'YYYY-MM-DD',
+      level: 'info',
+     })
   ]
 });
 
@@ -17,6 +24,7 @@ var express = require('express'),
   app = express(),
   port = process.env.EHBPORT;
 logger.error('Starting!')
+logger.info('Info block..')
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
