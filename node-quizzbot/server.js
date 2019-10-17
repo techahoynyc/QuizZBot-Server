@@ -18,6 +18,7 @@ loggers.add('quizzbot-loger', {
     }),
   ],
 });
+const logger = loggers.get('quizzbot-logger')
 
 var express = require('express'),
   exphbs = require('express-handlebars'),
