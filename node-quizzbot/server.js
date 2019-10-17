@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { loggers, transports ,format} = require('winston');
-loggers.add('quizzbot-loger', {
+loggers.add('quizzbot-logger', {
   level: 'info',
   format: format.combine(
     format.colorize(),
@@ -19,7 +19,7 @@ loggers.add('quizzbot-loger', {
   ]
 });
 
-const logger = loggers.get('quizzbot-logger');
+const logger = loggers.get('quizzbot-logger')
 
 var express = require('express'),
   exphbs = require('express-handlebars'),
