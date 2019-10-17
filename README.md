@@ -88,24 +88,6 @@ __Database Server__
     quizzbot=> insert into quizzbots values('<qbid>','<ip_address>');
     ```
 
-## Game Play
-__V1__
-* [x] Start/Stop race manually
-* [x] Access questions page with QButton
-* [ ] Points and penalties dependent on right or wrong answer, respectively
- * Points: Correct answer is +10 points
- * Banana penalty: QZB spins in place for some seconds and +0 points
-* [ ] Leaderboard to display leaders using QZB unique ID
-
-__V2__
-* [ ] Grafan metrics
-* [ ] Leaderboard is composed of users or team names requiring sign-in independent of car
-* [ ] Thoughtfulness()
-* [ ] Easily change QSet
-* [ ] At preset intervals the user is prompted to answer questions
-* [ ] Rewards for correct answer
-* [ ] Time racers
-
 ## Refernce links
 __ZeroBot__
 https://hackaday.io/project/25092/instructions  
