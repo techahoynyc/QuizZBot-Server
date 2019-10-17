@@ -5,8 +5,8 @@ let rawdata = fs.readFileSync('qset.json');
 let questions = JSON.parse(rawdata);
 var totalQs = questions.length - 1
 
-console.log(`There are ${totalQs} question(s)`)
-console.log(questions)
+logger.debug(`There are ${totalQs} question(s)`)
+logger.debug(questions)
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: process.env.DATABASE_USER,
@@ -28,11 +28,11 @@ exports.getQbyQBID = function(req, res) {
       throw error
     }
     if (results.rows[0] == undefined) {
-      console.log(`--QBID #${qbid} is not found`)
+      logger.error(`QBID #${qbid} is not found`)
       res.send(`ERROR: QBID #${qbid} is not found<BR>Please speak to your teacher.`)
     } else {
       var ip = results.rows[0].ip
-      console.log(`--QBID #${qbid} is ready to play!`)
+      logger.info(`QBID #${qbid} is ready to play!`)
       pool.query('SELECT max(q) FROM players WHERE qbid = $1', [qbid], (error, results) => {
         if (error) {
           throw error
@@ -40,13 +40,13 @@ exports.getQbyQBID = function(req, res) {
         var currQ = results.rows[0].max
         if (!currQ)
           currQ = 0
-        console.log(`--QBID #${qbid} last answered question #${currQ}`)
+        logger.info(`QBID #${qbid} last answered question #${currQ}`)
         if(totalQs > currQ){
           currQ+=1
-          console.log(`--QBID #${qbid} is now on question #${currQ}`)
+          logger.info(`QBID #${qbid} is now on question #${currQ}`)
           res.render('home.handlebars',{question:questions[currQ].question,answer:questions[currQ].answer,id:currQ,qbid:qbid,ip:ip});
         } else {
-          console.log(`--QBID #${qbid} has answered all the questions!`)
+          logger.info(`QBID #${qbid} has answered all the questions!`)
           res.send('You completed all the questions!');
         }
       });
@@ -69,7 +69,7 @@ exports.saveAnswer = function(req, res) {
       throw error
     }
   })
-  console.log(`--QBID #${qbid} received ${points} point(s)`)
-  console.log(`----Redirecting QBID #${qbid} to ${url}`)
+  logger.info(`QBID #${qbid} received ${points} point(s)`)
+  logger.info(`Redirecting QBID #${qbid} to ${url}`)
   res.redirect(url)
 };

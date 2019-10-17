@@ -12,7 +12,7 @@ const logger = createLogger({
 ),
   transports: [
     new transports.File({
-      filename: './logs/QuizZBot-Server-%DATE%.log',
+      filename: './logs/QuizZBot-Server.log',
       datePattern: 'YYYY-MM-DD',
       level: 'info',
      })
@@ -23,8 +23,7 @@ var express = require('express'),
   exphbs = require('express-handlebars'),
   app = express(),
   port = process.env.EHBPORT;
-logger.error('Starting!')
-logger.info('Info block..')
+logger.info('Starting QuizZBot-Server...')
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -36,6 +35,5 @@ routes(app);
 
 
 app.listen(port, '0.0.0.0', () => {
-  logger.log('info',`App running on port ${port}.`)
-  console.log(`App running on port ${port}.`)
+  logger.info(`App running on port ${port}.`)
 });
