@@ -33,7 +33,7 @@ exports.getQbyQBID = function(req, res) {
       console.log(`--QBID #${qbid} is not found`)
       res.send(`ERROR: QBID #${qbid} is not found<BR>Please speak to your teacher.`)
     } else {
-      console.log(`--QBID #${qbid} ${msg}`)
+      console.log(`--QBID #${qbid} is ready to play!`)
       pool.query('SELECT max(q) FROM players WHERE qbid = $1', [qbid], (error, results) => {
         if (error) {
           throw error
