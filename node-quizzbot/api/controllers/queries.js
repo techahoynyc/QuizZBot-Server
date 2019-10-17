@@ -47,12 +47,12 @@ exports.saveAnswer = function(req, res) {
   var points = 0
   var action = 'slip'
   if(answer == correct){
-    score = 1
+    points = 1
     action = 'drive'
   }
   var url = 'http://' + ip + ':3000/?action=' + action
 
-  pool.query('INSERT INTO players (qbid, q, score) VALUES ($1, $2, $3)', [qbid, q, score], (error, results) => {
+  pool.query('INSERT INTO players (qbid, q, a) VALUES ($1, $2, $3)', [qbid, id, points], (error, results) => {
     if (error) {
       throw error
     }
