@@ -82,7 +82,7 @@ __Database Server__
    ```
 
  1. Register the QuizZBots replacing the <place_holders> with their appropriate values, for each QuiZZBot you have.  
-    QBID: A unique ID for each QuizZBot
+    QBID: A unique ID for each QuizZBot  
     IP Address: The QuizZBot's IP address  
     ```
     quizzbot=> insert into quizzbots values('<qbid>','<ip_address>');
