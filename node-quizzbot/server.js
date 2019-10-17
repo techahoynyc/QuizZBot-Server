@@ -1,4 +1,17 @@
 require('dotenv').config();
+const { createLogger, transports ,format} = require('winston');
+const logger = createLogger({
+  level: 'info',
+  format: format.combine(
+    format.json(),
+    format.timestamp()
+),
+  transports: [
+    // - Write all logs error (and below) to `somefile.log`.
+    new transports.File({ filename: 'QuizZBot-Server.log', level: 'error' })
+  ]
+});
+
 var express = require('express'),
   exphbs = require('express-handlebars'),
   app = express(),
@@ -15,5 +28,6 @@ routes(app);
 
 
 app.listen(port, '0.0.0.0', () => {
+  logger.log('info',`App running on port ${port}.`)
   console.log(`App running on port ${port}.`)
 });
