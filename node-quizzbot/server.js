@@ -1,8 +1,6 @@
 require('dotenv').config();
 //const { createLogger, transports ,format} = require('winston');
-const logger = createLogger({
-  level: 'info',
-  format: format.combine(
+
 const logger = winston.format.combine(
     winston.format.colorize(),
     winston.format.timestamp(),
