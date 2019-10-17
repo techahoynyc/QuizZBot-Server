@@ -31,7 +31,7 @@ exports.getQbyQBID = function(req, res) {
       throw error
     }
     if (results.rows[0] == undefined) {
-      logger.error(`QBID #${qbid} is not found`)
+      logger.error(`QBID #${qbid} cannot be found - Verify it is registered in the quizzbots DB!`)
       res.send(`ERROR: QBID #${qbid} is not found<BR>Please speak to your teacher.`)
     } else {
       var ip = results.rows[0].ip
@@ -43,7 +43,7 @@ exports.getQbyQBID = function(req, res) {
         var currQ = results.rows[0].max
         if (!currQ)
           currQ = 0
-        logger.info(`QBID #${qbid} last answered question #${currQ}`)
+        logger.debug(`QBID #${qbid} last answered question #${currQ}`)
         if(totalQs > currQ){
           currQ+=1
           logger.info(`QBID #${qbid} is now on question #${currQ}`)
@@ -72,7 +72,7 @@ exports.saveAnswer = function(req, res) {
       throw error
     }
   })
-  logger.info(`QBID #${qbid} received ${points} point(s)`)
+  logger.info(`QBID #${qbid} answered question #${id} and received ${points} point(s)!`)
   logger.info(`Redirecting QBID #${qbid} to ${url}`)
   res.redirect(url)
 };
