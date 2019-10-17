@@ -17,7 +17,9 @@ loggers.add('quizzbot-loger', {
       level: 'info',
     }),
   ]
-})
+});
+
+const { loggers } = require('winston')
 const logger = loggers.get('quizzbot-logger')
 
 var express = require('express'),
