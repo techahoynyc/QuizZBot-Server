@@ -17,29 +17,44 @@ const pool = new Pool({
 })
 
 exports.getHome = function(req, res) {
-  res.send('Welcome to QuizZBot!  Please use an authorized QuizZBot to receive your first question.')
+  res.send('Welcome to QuizZBot!<BR>Please use an authorized QuizZBot to receive your first question.')
 };
 
 exports.getQbyQBID = function(req, res) {
   const qbid = parseInt(req.params.qbid)
-  const ip = req.ip
-
-  pool.query('SELECT max(q) FROM players WHERE qbid = $1', [qbid], (error, results) => {
+  var ip = 0
+  pool.query('SELECT ip from quizzbots WHERE qbid = $1', [qbid], (error, results) => {
     if (error) {
       throw error
     }
-    var currQ = results.rows[0].max
-    if (!currQ)
-      currQ = 0
-    console.log(`--QBID #${qbid} last answered question #${currQ}`)
-    if(totalQs > currQ){
-      currQ+=1
-      console.log(`--QBID #${qbid} is now on question #${currQ}`)
-      res.render('home.handlebars',{question:questions[currQ].question,answer:questions[currQ].answer,id:currQ,qbid:qbid,ip:ip});
+    var ip = results.rows[0].ip
+    if (!ip){
+      console.log(`--QBID #${qbid} is not found`)
+      res.send(`ERROR: QBID #${qbid} is not found<BR>Please speak to your teacher.`)
     } else {
-      res.send('You completed all the questions!');
+      console.log(`--QBID #${qbid} ${msg}`)
+      pool.query('SELECT max(q) FROM players WHERE qbid = $1', [qbid], (error, results) => {
+        if (error) {
+          throw error
+        }
+        var currQ = results.rows[0].max
+        if (!currQ)
+          currQ = 0
+        console.log(`--QBID #${qbid} last answered question #${currQ}`)
+        if(totalQs > currQ){
+          currQ+=1
+          console.log(`--QBID #${qbid} is now on question #${currQ}`)
+          res.render('home.handlebars',{question:questions[currQ].question,answer:questions[currQ].answer,id:currQ,qbid:qbid,ip:ip});
+        } else {
+          res.send('You completed all the questions!');
+        }
+      });
     }
   });
+
+
+
+
 };
 
 exports.saveAnswer = function(req, res) {
