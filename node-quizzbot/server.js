@@ -16,7 +16,7 @@ var express = require('express'),
   exphbs = require('express-handlebars'),
   app = express(),
   port = process.env.EHBPORT;
-logger.log('info','Starting!')
+logger.info('Starting!')
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
