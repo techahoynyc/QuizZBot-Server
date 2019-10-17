@@ -37,7 +37,7 @@ __Web Server__
 
 1. Create .env file for sensitive information
    ```
-   ~/QuizZBot-Server/node-quizzbot $nano .env
+   ~/QuizZBot-Server/node-quizzbot $ nano .env
    ```
 
 1. Add the following to the new .env file.
