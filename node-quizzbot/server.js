@@ -1,19 +1,20 @@
 require('dotenv').config();
 //const { createLogger, transports ,format} = require('winston');
-
-const logger = winston.format.combine(
-    winston.format.colorize(),
-    winston.format.timestamp(),
-    winston.format.align(),
-    winston.format.printf(
+const logger = createLogger({
+  level: 'info',
+  format: format.combine(
+    format.colorize(),
+    format.timestamp(),
+    format.align(),
+    format.printf(
       info => `${info.timestamp} ${info.level}: ${info.message}`,
     ),
 );
 
-winston.loggers.add('customLogger', {
+loggers.add('customLogger', {
   format: logFormat,
   transports: [
-    new winston.transports.File({
+    new transports.File({
       filename: './logs/QuizZBot-Server.log',
       datePattern: 'YYYY-MM-DD',
       level: 'info',
