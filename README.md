@@ -24,15 +24,30 @@ __Web Server__
    sudo apt-get install node.js npm
    ```
 
-1. Clone QuizZBot repository
+1. Clone QuizZBot-Server repository
    ```
-   git clone https://github.com/techahoynyc/quizzbot
+   git clone https://github.com/techahoynyc/quizzbot-server
    ```
 
 1. Download dependencies listed in package.json file
    ```
-   ~ $ cd quizzbot/node-quizzbot
-   ~/quizzbot/node-quizzbot $ npm install
+   ~ $ cd QuizZBot-Server/node-quizzbot
+   ~/QuizZBot-Server/node-quizzbot $ npm install
+   ```
+
+1. Create .env file for sensitive information
+   ```
+   ~/QuizZBot-Server/node-quizzbot $nano .env
+   ```
+
+1. Add the following to the new .env file.
+   Replace the <place_holders> with their appropriate value (i.e. <db_port> could become 5432)
+   ```
+   DATABASE_USER=<db_user>
+   DATABASE_PASSWORD=<db_user_password>
+   DATABASE_NAME=<db_name>
+   DATABASE_PORT=<db_port>
+   EHBPORT=<express_handlebar_port>
    ```
 
 __Database Server__
