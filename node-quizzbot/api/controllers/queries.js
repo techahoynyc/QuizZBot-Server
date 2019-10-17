@@ -5,6 +5,8 @@ let rawdata = fs.readFileSync('qset.json');
 let questions = JSON.parse(rawdata);
 var totalQs = questions.length - 1
 
+public logger = winston.loggers.get('customLogger');
+
 logger.debug(`There are ${totalQs} question(s)`)
 logger.debug(questions)
 const Pool = require('pg').Pool
