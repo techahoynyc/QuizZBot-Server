@@ -8,6 +8,8 @@ module.exports = function(app) {
 
   app.route('/questions/:qbid')
     .get(db.getQbyQBID);
+
+  app.route('/saveAnswer')
     .post(db.saveAnswer);
 
 };
