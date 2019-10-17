@@ -1,6 +1,6 @@
 require('dotenv').config();
-const { createLogger, transports ,format} = require('winston');
-const logger = createLogger({
+const { loggers, transports ,format} = require('winston');
+loggers.add('quizzbot-loger', {
   level: 'info',
   format: format.combine(
     format.colorize(),

@@ -5,7 +5,8 @@ let rawdata = fs.readFileSync('qset.json');
 let questions = JSON.parse(rawdata);
 var totalQs = questions.length - 1
 
-public logger = winston.loggers.get('customLogger');
+const { loggers } = require('winston')
+const logger = loggers.get('quizzbot-logger')
 
 logger.debug(`There are ${totalQs} question(s)`)
 logger.debug(questions)
