@@ -9,15 +9,15 @@ loggers.add('quizzbot-loger', {
     format.printf(
       info => `${info.timestamp} ${info.level}: ${info.message}`,
     ),
-),
+  ),
   transports: [
     new transports.File({
       filename: './logs/QuizZBot-Server.log',
       datePattern: 'YYYY-MM-DD',
       level: 'info',
     }),
-  ],
-});
+  ]
+})
 const logger = loggers.get('quizzbot-logger')
 
 var express = require('express'),
