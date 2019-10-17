@@ -46,6 +46,7 @@ exports.getQbyQBID = function(req, res) {
           console.log(`--QBID #${qbid} is now on question #${currQ}`)
           res.render('home.handlebars',{question:questions[currQ].question,answer:questions[currQ].answer,id:currQ,qbid:qbid,ip:ip});
         } else {
+          console.log(`--QBID #${qbid} has answered all the questions!`)
           res.send('You completed all the questions!');
         }
       });
