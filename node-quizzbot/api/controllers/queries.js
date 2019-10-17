@@ -31,7 +31,7 @@ exports.getQbyQBID = function(req, res) {
       throw error
     }
     if (results.rows[0] == undefined) {
-      logger.error(`QBID #${qbid} cannot be found - Verify it's registered in the DB!`)
+      logger.error(`QBID #${qbid} not found - Verify it's registered in the DB!`)
       res.send(`ERROR: QBID #${qbid} is not found<BR>Please speak to your teacher.`)
     } else {
       var ip = results.rows[0].ip
