@@ -9,7 +9,7 @@ const logger = createLogger({
     format.printf(
       info => `${info.timestamp} ${info.level}: ${info.message}`,
     ),
-);
+});
 
 loggers.add('customLogger', {
   format: logFormat,
