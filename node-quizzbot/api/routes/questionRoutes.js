@@ -5,7 +5,6 @@ module.exports = function(app) {
 
   app.route('/')
    .get(db.getHome);
-  });
 
   app.route('/questions/:qbid')
     .get(db.getQbyQBID);
