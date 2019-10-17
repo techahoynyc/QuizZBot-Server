@@ -74,10 +74,17 @@ __Database Server__
    psql quizzbot
    ```
 
-1. Create the leaderboard table
+1. Create the various tables
    ```
    quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
+   quizzbot=> create table players (qbid text, q integer, a integer);
+   quizzbot=> create table quizzbots (qbid text, ip text);
    ```
+
+ 1. Register the QuizZBots replacing the <place_holders> with their appropriate values
+    ```
+    quizzbot=> insert into quizzbots values('<qbid>','<ip_address>');
+    ```
 
 ## Game Play
 __V1__
