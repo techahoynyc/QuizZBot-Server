@@ -1,7 +1,8 @@
+require('dotenv').config();
 var express = require('express'),
   exphbs = require('express-handlebars'),
   app = express(),
-  port = 3000;
+  port = process.env.EHBPORT;
 
 
 app.engine('handlebars', exphbs());

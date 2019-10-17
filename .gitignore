@@ -39,3 +39,4 @@ Thumbs.db
 # QuizZBot #
 ############
 node_modules/
+*.env

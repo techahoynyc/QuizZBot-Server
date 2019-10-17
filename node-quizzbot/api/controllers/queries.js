@@ -9,11 +9,11 @@ console.log(`There are ${totalQs} question(s)`)
 console.log(questions)
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: 'pi',
+  user: process.env.DATABASE_USER,
   host: 'localhost',
-  database: 'quizzbot',
-  password: '$#Cur1tyDB',
-  port: 5432,
+  database: process.env.DATABASE_NAME,
+  password: process.env.DATABASE_PASSWORD,
+  port: process.env.DATABASE_PORT,
 })
 
 exports.getHome = function(req, res) {
