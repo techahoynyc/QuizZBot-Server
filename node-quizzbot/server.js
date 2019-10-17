@@ -12,7 +12,7 @@ const logger = createLogger({
 ),
   transports: [
     new transports.File({
-      filename: 'QuizZBot-Server.log',
+      filename: './logs/QuizZBot-Server-%DATE%.log',
       datePattern: 'YYYY-MM-DD',
       level: 'info',
      })
