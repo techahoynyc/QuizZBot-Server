@@ -1,6 +1,9 @@
-<form method="POST" action="/submit-form">
+<form method="POST" action="/saveAnswer">
   <p>{{question}}</p>
   <input type="text" name="answer" />
   <input type="hidden" name="correct" value="{{answer}}" />
+  <input type="hidden" name="id" value="{{id}}" />
+  <input type="hidden" name="qbid" value="{{qbid}}" />
+  <input type="hidden" name="ip" value="{{ip}}" />
   <input type="submit" />
 </form>

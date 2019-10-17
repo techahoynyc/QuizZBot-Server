@@ -3,7 +3,7 @@
 const fs = require('fs');
 let rawdata = fs.readFileSync('qset.json');
 let questions = JSON.parse(rawdata);
-let totalQs = questions.length - 1
+var totalQs = questions.length - 1
 
 console.log(`There are ${totalQs} question(s)`)
 console.log(questions)
@@ -35,7 +35,7 @@ exports.getQbyQBID = function(req, res) {
     if(totalQs > currQ){
       currQ+=1
       console.log(`--QBID #${qbid} is now on question #${currQ}`)
-      res.render('home.handlebars',{question:questions[currQ].question,answer:questions[currQ].answer,id:currQ,ip:ip});
+      res.render('home.handlebars',{question:questions[currQ].question,answer:questions[currQ].answer,id:currQ,qbid:qbid,ip:ip});
     } else {
       res.send('You completed all the questions!');
     }
