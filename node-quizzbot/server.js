@@ -1,23 +1,18 @@
-var express = require('express');
-var exphbs = require('express-handlebars');
-var app = express();
-const db = require('./queries');
-const port = 3000;
+var express = require('express'),
+  exphbs = require('express-handlebars'),
+  app = express(),
+  port = 3000;
 
-'use strict';
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Welcome to QuizZBot!  Please use an authorized QuizZBot to receive your first question.');
-});
+var routes = require('./api/routes/questionRoutes.js');
+routes(app);
 
-app.get('/q/:qbid', db.getQbyQBID)
-app.post('/q/:qbid/:answer', db.saveAnswer)
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`App running on port ${port}.`)
 });
