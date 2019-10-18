@@ -72,6 +72,7 @@ exports.saveAnswer = function(req, res) {
     if (error) {
       throw error
     }
+    logger.info(`QBID #${qbid} answered question #${id} and received ${points} point(s)!`)
   })
 
   //update leaderboard
@@ -81,11 +82,9 @@ exports.saveAnswer = function(req, res) {
       throw error
     }
     score = results.rows[0].score
-    logger.info(`score: ${score}`)
+    logger.info(`QBID #${qbid} has a total score of ${score} `)
   })
 
-  logger.info(`QBID #${qbid} answered question #${id} and received ${points} point(s)!`)
-  logger.info(`QBID #${qbid} has a total score of ${score} `)
-  logger.info(`Redirecting QBID #${qbid} to ${url}`)
+  logger.debug(`Redirecting QBID #${qbid} to ${url}`)
   res.redirect(url)
 };
