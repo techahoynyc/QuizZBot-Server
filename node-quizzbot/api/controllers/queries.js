@@ -84,7 +84,7 @@ exports.saveAnswer = function(req, res) {
   })
 
   logger.info(`QBID #${qbid} answered question #${id} and received ${points} point(s)!`)
-  logger.info(`QBID #${qbid}'s total score is ${score}' `)
+  logger.info(`QBID #${qbid} has a total score of ${score} `)
   logger.info(`Redirecting QBID #${qbid} to ${url}`)
   res.redirect(url)
 };
