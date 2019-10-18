@@ -81,6 +81,7 @@ exports.saveAnswer = function(req, res) {
       throw error
     }
     score = results.rows[0].score
+    logger.info(`score: ${score}`)
   })
 
   logger.info(`QBID #${qbid} answered question #${id} and received ${points} point(s)!`)
