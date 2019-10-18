@@ -23,6 +23,10 @@ exports.getHome = function(req, res) {
   res.send('Welcome to QuizZBot!<BR>Please use an authorized QuizZBot to receive your first question.')
 };
 
+exports.getHome2 = function(req, res) {
+  res.send('Home2')
+};
+
 exports.getQbyQBID = function(req, res) {
   const qbid = parseInt(req.params.qbid)
   var ip = 0
@@ -87,4 +91,18 @@ exports.saveAnswer = function(req, res) {
 
   logger.debug(`Redirecting QBID #${qbid} to ${url}`)
   res.redirect(url)
+};
+
+exports.getLeaderboard = function(req, res){
+
+  pool.query('SELECT * FROM leaderboard ORDER BY score desc', (error, results) => {
+    if (error) {
+      throw error
+    }
+    var data = results.rows;
+    console.log(data);
+    res.render('leaderboard.handlebars', {standings: data} );
+  });
+
+
 };

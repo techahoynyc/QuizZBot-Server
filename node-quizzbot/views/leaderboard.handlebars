@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+
+tr:nth-child(even) {
+  background-color: #add8e6;
+}
+tr:nth-child(odd) {
+  background-color: #e6bbad;
+}
+tr:nth-child(1) {
+  background-color: #dddddd;
+}
+
+</style>
+</head>
+<body>
+
+<h2 align="center">LEADERBOARD</h2>
+
+<table>
+  <tr>
+    <th align="center">RACER</th>
+    <th>POINTS</th>
+    <th>TOTAL QUESTIONS </th>
+  </tr>
+  {{#if standings}}
+  {{#each standings}}
+    <tr>
+      <td> {{this.qbid}} </td>
+      <td> {{this.score}} </td>
+    </tr>
+  {{/each}}
+  {{else}} No races yet....{{/if}}
+</table>
+
+</body>
+</html>

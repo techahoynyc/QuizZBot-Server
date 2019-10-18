@@ -3,8 +3,14 @@
 module.exports = function(app) {
   var db = require('../controllers/queries');
 
+  app.route('/leaderboard')
+   .get(db.getLeaderboard);
+
   app.route('/')
    .get(db.getHome);
+
+   app.route('/2')
+    .get(db.getHome2);
 
   app.route('/questions/:qbid')
     .get(db.getQbyQBID);
