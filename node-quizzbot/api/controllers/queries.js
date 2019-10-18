@@ -75,13 +75,16 @@ exports.saveAnswer = function(req, res) {
   })
 
   //update leaderboard
-  pool.query('INSERT INTO leaderboard (qbid, score) VALUES ($1, $2) ON CONFLICT (qbid) DO UPDATE SET score = leaderboard.score + ($2)', [qbid, points], (error, results) => {
+  var score = 0
+  pool.query('INSERT INTO leaderboard (qbid, score) VALUES ($1, $2) ON CONFLICT (qbid) DO UPDATE SET score = leaderboard.score + ($2) RETURNING score', [qbid, points], (error, results) => {
     if (error) {
       throw error
     }
+    score = results.rows[0]
   })
 
   logger.info(`QBID #${qbid} answered question #${id} and received ${points} point(s)!`)
+  logger.info(`QBID #${qbid}'s total score is ${score}' `)
   logger.info(`Redirecting QBID #${qbid} to ${url}`)
   res.redirect(url)
 };
