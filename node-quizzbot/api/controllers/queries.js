@@ -67,11 +67,20 @@ exports.saveAnswer = function(req, res) {
   }
   var url = 'http://' + ip + ':3000/?action=' + action
 
+  //record player answer
   pool.query('INSERT INTO players (qbid, q, a) VALUES ($1, $2, $3)', [qbid, id, points], (error, results) => {
     if (error) {
       throw error
     }
   })
+
+  //update leaderboard
+  pool.query('INSERT INTO leaderboard (qbid, score) VALUES ($1, $2) ON CONFLICT (qbid) DO UPDATE SET score = leaderboard.score + ($2)', [qbid, points], (error, results) => {
+    if (error) {
+      throw error
+    }
+  })
+
   logger.info(`QBID #${qbid} answered question #${id} and received ${points} point(s)!`)
   logger.info(`Redirecting QBID #${qbid} to ${url}`)
   res.redirect(url)
