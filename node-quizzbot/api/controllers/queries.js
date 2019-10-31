@@ -121,4 +121,4 @@ exports.resetGame = function(req, res){
   });
 
   res.send('QuizZBot Game has been reset!')
-});
+};
