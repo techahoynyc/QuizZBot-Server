@@ -104,5 +104,21 @@ exports.getLeaderboard = function(req, res){
     res.render('leaderboard.handlebars', {standings: data} );
   });
 
-
 };
+
+exports.resetGame = function(req, res){
+  //reset leaderboard
+  pool.query('DELETE FROM leaderboard', (error, results) => {
+    if (error) {
+      throw error
+    }
+  });
+  //reset player results
+  pool.query('DELETE FROM players', (error, results) => {
+    if (error) {
+      throw error
+    }
+  });
+
+  res.send('QuizZBot Game has been reset!')
+});
