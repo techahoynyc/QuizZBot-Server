@@ -18,6 +18,57 @@ __Prerequisites__
    sudo apt-get install git
    ```
 
+1. Create quizzbots user
+   ```
+   sudo adduser quizzbots
+   ```
+
+1. Add quizzbots user to sudo group
+   ```
+   sudo usermod -aG sudo quizzbots
+   ```
+
+  __Database Server__
+  1. Install Postgresql
+     ```
+     sudo apt install postgresql libpq-dev postgresql-client
+     postgresql-client-common -y
+     ```
+
+  1. Setup Postgresql and grant the pi user access
+     ```
+     sudo su postgres
+     createuser quizzbots -P --interactive
+     ```
+
+  1. Create the quizzbots database
+     ```
+     ~ $ psql
+     > create database quizzbots;
+     > \q
+     ```
+
+  1. Connect to the quizzbot database
+     ```
+     su quizzbots
+     cd
+     psql quizzbots
+     ```
+
+  1. Create the various tables
+     ```
+     quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
+     quizzbot=> create table players (qbid text, q integer, a integer);
+     quizzbot=> create table quizzbots (qbid text, ip text);
+     ```
+
+   1. Register the QuizZBots replacing the <place_holders> with their appropriate values, for each QuiZZBot you have.  
+      QBID: A unique ID for each QuizZBot  
+      IP Address: The QuizZBot's IP address  
+      ```
+      quizzbot=> insert into quizzbots values('<qbid>','<ip_address>');
+      ```
+
 __Web Server__
 1. Install NodeJS
    ```
@@ -46,47 +97,22 @@ __Web Server__
    DATABASE_USER=<db_user>
    DATABASE_PASSWORD=<db_user_password>
    DATABASE_NAME=<db_name>
-   DATABASE_PORT=<db_port>
-   EHBPORT=<express_handlebar_port>
+   DATABASE_PORT=5432
+   EHBPORT=3000
    ```
 
-__Database Server__
-1. Install Postgresql
+1. Install PM2 to manage and autostart the QuizZBot-Server process
    ```
-   sudo apt install postgresql libpq-dev postgresql-client
-   postgresql-client-common -y
+   sudo npm i -g pm2
    ```
 
-1. Setup Postgresql and grant the pi user access
+1. Start QuizZBot-Server and configure to autolaunch at boot
    ```
-   sudo su postgres
-   createuser pi -P --interactive
-   ```
-
-1. Create the quizzbot database
-   ```
-   ~ $ psql
-   > create database quizzbot
+   pm2 start server.js
+   pm2 save
    ```
 
-1. Connect to the quizzbot database
-   ```
-   psql quizzbot
-   ```
 
-1. Create the various tables
-   ```
-   quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
-   quizzbot=> create table players (qbid text, q integer, a integer);
-   quizzbot=> create table quizzbots (qbid text, ip text);
-   ```
-
- 1. Register the QuizZBots replacing the <place_holders> with their appropriate values, for each QuiZZBot you have.  
-    QBID: A unique ID for each QuizZBot  
-    IP Address: The QuizZBot's IP address  
-    ```
-    quizzbot=> insert into quizzbots values('<qbid>','<ip_address>');
-    ```
 
 ## Refernce links
 __ZeroBot__
@@ -103,3 +129,6 @@ https://flaviocopes.com/express-forms/
 https://hub.packtpub.com/using-handlebars-express/  
 https://stackabuse.com/reading-and-writing-json-files-with-node-js/  
 https://www.npmjs.com/package/express-handlebars  
+
+__PM2__
+https://www.tecmint.com/install-pm2-to-run-nodejs-apps-on-linux-server/
