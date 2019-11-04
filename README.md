@@ -28,46 +28,46 @@ __Prerequisites__
    sudo usermod -aG sudo quizzbots
    ```
 
-  __Database Server__
-  1. Install Postgresql
-     ```
-     sudo apt install postgresql libpq-dev postgresql-client
-     postgresql-client-common -y
-     ```
+__Database Server__
+1. Install Postgresql
+   ```
+   sudo apt install postgresql libpq-dev postgresql-client
+   postgresql-client-common -y
+   ```
 
-  1. Setup Postgresql and grant the pi user access
-     ```
-     sudo su postgres
-     createuser quizzbots -P --interactive
-     ```
+1. Setup Postgresql and grant the pi user access
+   ```
+   sudo su postgres
+   createuser quizzbots -P --interactive
+   ```
 
-  1. Create the quizzbots database
-     ```
-     ~ $ psql
-     > create database quizzbots;
-     > \q
-     ```
+1. Create the quizzbots database
+   ```
+   ~ $ psql
+   > create database quizzbots;
+   > \q
+   ```
 
-  1. Connect to the quizzbot database
-     ```
-     su quizzbots
-     cd
-     psql quizzbots
-     ```
+1. Connect to the quizzbot database
+   ```
+   su quizzbots
+   cd
+   psql quizzbots
+   ```
 
-  1. Create the various tables
-     ```
-     quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
-     quizzbot=> create table players (qbid text, q integer, a integer);
-     quizzbot=> create table quizzbots (qbid text, ip text);
-     ```
+1. Create the various tables
+   ```
+   quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
+   quizzbot=> create table players (qbid text, q integer, a integer);
+   quizzbot=> create table quizzbots (qbid text, ip text);
+   ```
 
-   1. Register the QuizZBots replacing the <place_holders> with their appropriate values, for each QuiZZBot you have.  
-      QBID: A unique ID for each QuizZBot  
-      IP Address: The QuizZBot's IP address  
-      ```
-      quizzbot=> insert into quizzbots values('<qbid>','<ip_address>');
-      ```
+ 1. Register the QuizZBots replacing the <place_holders> with their appropriate values, for each QuiZZBot you have.  
+    QBID: A unique ID for each QuizZBot  
+    IP Address: The QuizZBot's IP address  
+    ```
+    quizzbot=> insert into quizzbots values('<qbid>','<ip_address>');
+    ```
 
 __Web Server__
 1. Install NodeJS
@@ -77,7 +77,7 @@ __Web Server__
 
 1. Clone QuizZBot-Server repository
    ```
-   git clone https://github.com/techahoynyc/quizzbot-server
+   git clone https://github.com/techahoynyc/QuizZBot-Server
    ```
 
 1. Download dependencies listed in package.json file
@@ -103,13 +103,14 @@ __Web Server__
 
 1. Install PM2 to manage and autostart the QuizZBot-Server process
    ```
-   sudo npm i -g pm2
+   ~/QuizZBot-Server/node-quizzbot $ sudo npm i -g pm2
    ```
 
 1. Start QuizZBot-Server and configure to autolaunch at boot
    ```
-   pm2 start server.js
-   pm2 save
+   ~/QuizZBot-Server/node-quizzbot $ pm2 start quizzbot-server.js
+   ~/QuizZBot-Server/node-quizzbot $ pm2 startup
+   ~/QuizZBot-Server/node-quizzbot $ pm2 save
    ```
 
 
