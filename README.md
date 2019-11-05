@@ -69,6 +69,13 @@ __Database Server__
     quizzbot=> insert into quizzbots values('<qbid>','<ip_address>');
     ```
 
+1. Edit the PostgreSQL config file /etc/postgresql/<your_version>/main/postgresql.conf to uncomment the listen_addresses line and change its value from localhost to '*'.  Save and exit.  
+
+1. Restart the PostgreSQL service  
+   ```
+   sudo service postgresql restart
+   ```  
+   
 __Web Server__
 1. Install NodeJS
    ```
