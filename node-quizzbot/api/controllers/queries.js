@@ -32,7 +32,7 @@ exports.getQbyQBID = function(req, res) {
   var ip = 0
   pool.query('SELECT ip from quizzbots WHERE qbid = $1', [qbid], (error, results) => {
     if (error) {
-      throw error
+      logger.error(error)
     }
     if (results.rows[0] == undefined) {
       logger.error(`QBID #${qbid} not found - Verify it's registered in the DB!`)
@@ -42,7 +42,7 @@ exports.getQbyQBID = function(req, res) {
       logger.info(`QBID #${qbid} is ready to play!`)
       pool.query('SELECT max(q) FROM players WHERE qbid = $1', [qbid], (error, results) => {
         if (error) {
-          throw error
+          logger.error(error)
         }
         var currQ = results.rows[0].max
         if (!currQ)
@@ -74,7 +74,7 @@ exports.saveAnswer = function(req, res) {
   //record player answer
   pool.query('INSERT INTO players (qbid, q, a) VALUES ($1, $2, $3)', [qbid, id, points], (error, results) => {
     if (error) {
-      throw error
+      logger.error(error)
     }
     logger.info(`QBID #${qbid} answered question #${id} and received ${points} point(s)!`)
   })
@@ -83,7 +83,7 @@ exports.saveAnswer = function(req, res) {
   var score = 0
   pool.query('INSERT INTO leaderboard (qbid, score) VALUES ($1, $2) ON CONFLICT (qbid) DO UPDATE SET score = leaderboard.score + ($2) RETURNING score', [qbid, points], (error, results) => {
     if (error) {
-      throw error
+      logger.error(error)
     }
     score = results.rows[0].score
     logger.info(`QBID #${qbid} has a total score of ${score} `)
@@ -97,7 +97,7 @@ exports.getLeaderboard = function(req, res){
 
   pool.query('SELECT * FROM leaderboard ORDER BY score desc', (error, results) => {
     if (error) {
-      throw error
+      logger.error(error)
     }
     var data = results.rows;
     console.log(data);
@@ -110,13 +110,13 @@ exports.resetGame = function(req, res){
   //reset leaderboard
   pool.query('DELETE FROM leaderboard', (error, results) => {
     if (error) {
-      throw error
+      logger.error(error)
     }
   });
   //reset player results
   pool.query('DELETE FROM players', (error, results) => {
     if (error) {
-      throw error
+      logger.error(error)
     }
   });
 
