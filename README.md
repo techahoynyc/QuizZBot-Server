@@ -57,7 +57,7 @@ __Database Server__
 
 1. Create the various tables
    ```
-   quizzbot=> create table leaderboard (qbid text, teamname text, score integer);
+   quizzbot=> create table leaderboard (qbid text unique, teamname text, score integer);
    quizzbot=> create table players (qbid text, q integer, a integer);
    quizzbot=> create table quizzbots (qbid text, ip text);
    ```
@@ -75,7 +75,7 @@ __Database Server__
    ```
    sudo service postgresql restart
    ```  
-   
+
 __Web Server__
 1. Install NodeJS
    ```
